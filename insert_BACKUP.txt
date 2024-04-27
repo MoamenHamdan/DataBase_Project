@@ -1,0 +1,336 @@
+-- Insert statements for city table
+INSERT INTO city (city_name, country, state) VALUES
+('New York City', 'USA', 'New York'),
+('London', 'UK', 'England'),
+('Paris', 'France', 'Île-de-France'),
+('Tokyo', 'Japan', 'Tokyo'),
+('Sydney', 'Australia', 'New South Wales');
+
+
+-- Insert statements for airport table
+INSERT INTO airport (airport_code, airport_name, location, city_name) VALUES
+('JFK', 'John F. Kennedy International', 'New York', 'New York City'),
+('LHR', 'London Heathrow Airport', 'London', 'London'),
+('CDG', 'Charles de Gaulle Airport', 'Paris', 'Paris'),
+('HND', 'Haneda Airport', 'Tokyo', 'Tokyo'),
+('SYD', 'Sydney Kingsford Smith Airport', 'Sydney', 'Sydney');
+select * from airport;
+
+-- Insert statements for airline table
+INSERT INTO airline (airline_name, number_of_airplanes_owned) VALUES
+('Delta Airlines', 200),
+('British Airways', 150),
+('Air France', 120),
+('Japan Airlines', 100),
+('Qantas', 80);
+
+
+-- Insert statements for hangar table
+INSERT INTO hangar (hangar_number, hangar_capacity, hangar_location) VALUES
+(1, 10, 'New York'),
+(2, 15, 'London'),
+(3, 12, 'Paris'),
+(4, 20, 'Tokyo'),
+(5, 18, 'Sydney');
+
+-- Insert statements for airplane table
+INSERT INTO airplane (airplane_id, airline_id, registration_number, hangar_number, capacity, type, maitenance_status) VALUES
+(1001, 1, 12345, 1, 200, 'Single-Engine Piston', 'up to date'),
+(1002, 2, 23456, 2, 180, 'Multi-Engine Piston', 'up to date'),
+(1003, 3, 34567, 3, 150, 'Commercial', 'in maintenance'),
+(1004,4, 45678, 4, 220, 'Single-Engine Piston', 'out of service'),
+(1005, 5, 56789, 5, 190, 'Turboprop', 'up to date');
+
+
+
+
+--------------------done -------------------------
+
+
+-- Insert statements for class table
+INSERT INTO class (Description, Availability, Capacity, luxury_amenities, exclusive_services, privacy_features, lounge_access, priority_service) VALUES
+('Economy', 'T', 200, 'WiFi, Entertainment', 'Priority boarding', 'Dividers', 0, 0),
+('Business', 'T', 50, 'Flat-bed seats, Fine dining', 'Personalized service', 'Privacy dividers', 1, 1),
+('First Class', 'T', 20, 'Private suite, Gourmet meals', 'Dedicated staff', 'Fully enclosed suite', 1, 1),
+('Premium Economy', 'T', 100, 'Extra legroom, Enhanced meals', 'Priority check-in', 'Wider seats', 0, 0),
+('Economy Plus', 'T', 150, 'Extra legroom, Snacks', 'Priority seating', 'More recline', 0, 0);
+select * from payment ;
+
+-- Insert statements for ticket table
+INSERT INTO ticket (class_id, flight_number, destination, Takeoff_location, seat_number, Date_to_travel, date_of_cancelation, surcharge, date_of_booking) VALUES
+(1,  101, 'London', 'New York City', 23, '2024-04-25', NULL, NULL, '2024-04-20'),
+(2,  102, 'New York City', 'London', 15, '2024-04-28', NULL, NULL, '2024-04-20'),
+(3,  103, 'Paris', 'Tokyo', 8, '2024-05-01', NULL, NULL, '2024-04-21'),
+(4,  104, 'Tokyo', 'Paris', 5, '2024-05-04', NULL, NULL, '2024-04-22'),
+(5,  105, 'Sydney', 'London', 19, '2024-05-07', NULL, NULL, '2024-04-23');
+	
+-- Insert statements for payment table
+INSERT INTO payment (ticket_number, flight_number, price, payment_mode) VALUES
+(100, 101, 500.00, 'Credit Card'),
+(101, 102, 600.00, 'Debit Card'),
+(102, 103, 700.00, 'PayPal'),
+(103, 104, 800.00, 'Credit Card'),
+(104, 105, 900.00, 'Debit Card');
+
+
+-------------------------------done-------------------------------------------
+select * from airline;
+-- Insert statements for contain table
+INSERT INTO contain (airport_code, airline_id) VALUES
+('JFK', 1),
+('LHR',2),
+('CDG', 3),
+('HND', 4),
+('SYD',5);
+
+
+
+
+-- Insert statements for gate table
+INSERT INTO gate (gate_number, gate_status, airport_code) VALUES
+('01A', 'Open', 'JFK'),
+('02B', 'Open', 'LHR'),
+('03C', 'Open', 'CDG'),
+('04D', 'Open', 'HND'),
+('05E', 'Open', 'SYD');
+
+-- Insert statements for weather table
+INSERT INTO weather (weather_time, atmospheric_pressure, temperature) VALUES
+('08:00:00', 1013.25, 20.5),
+('12:00:00', 1012.50, 22.0),
+('16:00:00', 1010.75, 23.5),
+('20:00:00', 1011.00, 21.0),
+('00:00:00', 1010.25, 19.5);
+
+
+
+-- Insert statements for flight table
+INSERT INTO flight (status, seats_available, airplane_id, origin, destination, departure_time, arrival_time, flight_type, time, layover_time, number_of_stops, gate_number, departure_airportcode, arrival_airportcode, weather_time) VALUES
+('on time', 180, 1001, 'JFK', 'LHR', '2024-04-25 08:00:00', '2024-04-25 12:00:00', 'public', NULL, NULL, 0, '01A', 'JFK', 'LHR', '08:00:00'),
+('on time', 160, 1002, 'LHR', 'JFK', '2024-04-28 12:00:00', '2024-04-28 16:00:00', 'public', NULL, NULL, 0, '02B', 'LHR', 'JFK', '12:00:00'),
+('delayed', 140, 1003, 'CDG', 'HND', '2024-05-01 16:00:00', '2024-05-02 08:00:00', 'public', NULL, '2024-05-01 22:00:00', 1, '03C', 'CDG', 'HND', '16:00:00'),
+('canceled', 120, 1004, 'HND', 'CDG', '2024-05-04 20:00:00', NULL, 'public', NULL, NULL, 0, '04D', 'HND', 'CDG', '20:00:00'),
+('on time', 200, 1005, 'SYD', 'LHR', '2024-05-07 00:00:00', '2024-05-07 04:00:00', 'public', NULL, NULL, 0, '05E', 'SYD', 'LHR', '00:00:00');
+
+
+
+-- Insert statements for runway_data table
+INSERT INTO runway_data (flight_id, capacity, availability, maintenance_status) VALUES
+(1, 2, 'available', 'up to date'),
+(2, 2, 'available', 'up to date'),
+(3, 2, 'maitenance', 'in maintenance'),
+(4, 2, 'closed', 'out of service'),
+(5, 2, 'available', 'up to date');
+
+
+select * from ticket;
+-- Insert statements for passenger table
+INSERT INTO passenger (flight_id, gender, age, address, ticket_number, flight_number, name, phone, email, date_of_booking) VALUES
+(1, 'T', 30, '123 Main St, New York City', 100, 101, 'John Smith', '123-456-7890', 'john@example.com', '2024-04-20'),
+(2, 'F', 25, '456 Park Ave, London', 101, 102, 'Emily Johnson', '987-654-3210', 'emily@example.com', '2024-04-20'),
+(3, 'T', 40, '789 Rue de la Paix, Paris', 102, 103, 'Michael Brown', '456-789-0123', 'michael@example.com', '2024-04-21'),
+(4, 'F', 35, '123 Tokyo St, Tokyo', 103, 104, 'Sarah Davis', '789-012-3456', 'sarah@example.com', '2024-04-22'),
+(5, 'T', 28, '456 Bondi Rd, Sydney', 104, 105, 'Jessica Wilson', '012-345-6789', 'jessica@example.com', '2024-04-23');
+
+--=-----------------------------------------done----------------------------------------------------
+
+-- Insert statements for ground_transportation table
+INSERT INTO ground_transportation (type, rate, provider, availability) VALUES
+('taxi', 50.00, 'City Taxi Service', 1),
+('private car', 100.00, 'Luxury Car Rentals', 1),
+('shuttle', 20.00, 'Airport Shuttle Co.', 0);
+
+
+
+-- Insert statements for provides table
+INSERT INTO provides (passenger_id, service_id) VALUES
+(20240001, 200),
+(20240003, 202),
+(20240005, 204);
+
+
+-- Insert statements for baggage table
+INSERT INTO baggage (passenger_id, luggage_id, weight, flight_number, baggage_claim_area_no, luggage_type) VALUES
+(20240001, 'ABC3', 15.5, 1, 'A1', 'checked'),
+(20240002, 'EFG6', 10.2, 2, 'B2', 'carry on'),
+(20240003, 'IJK9', 20.0, 3, 'C3', 'checked'),
+(20240004, 'MNO3', 12.3, 4, 'D4', 'personal item'),
+(20240005, 'QRS7', 18.7, 5, 'E5', 'fragile');
+
+
+-- Insert statements for lost_and_found table
+INSERT INTO lost_and_found (passenger_id, luggage_id, datefound, locationfound, description) VALUES
+(20240001, 'EFG6', '2024-04-25', 'Gate B2', 'Black carry-on bag'),
+(20240003, 'MNO3', '2024-05-05', 'Gate D4', 'Blue backpack');
+
+-- Insert statements for dutyfree_product table
+INSERT INTO dutyfree_product (price, discount, brand, name, expiration_date) VALUES
+(50.00, 0.10, 'Apple', 'AirPods', '2025-04-01'),
+(20.00, 0.05, 'Samsung', 'Portable Charger', '2024-12-31'),
+(30.00, 0.15, 'Chanel', 'Perfume', '2024-06-30'),
+(100.00, 0.20, 'Rolex', 'Watch', '2024-12-31'),
+(80.00, 0.10, 'Sony', 'Headphones', '2025-03-01');
+select * from dutyfree_product;
+-- Insert statements for purchases table
+INSERT INTO purchases (passenger_id, product_id) VALUES
+(20240001, 1),
+(20240002, 2),
+(20240003, 3),
+(20240004, 4),
+(20240005, 5);
+
+----------------------done -------------------------
+-- Insert statements for vendor table
+INSERT INTO vendor (shop_number, name, gate_number) VALUES
+(1, 'Tech Store', '01A'),
+(2, 'Fashion Boutique', '02B'),
+(3, 'Duty-Free Shop', '03C'),
+(4, 'Bookstore', '04D'),
+(5, 'Gift Shop', '05E');
+
+-- Insert statements for employee table
+INSERT INTO employee (ssn, emp_age, emp_phone, first_name, last_name, salary, emp_gender, airport_code, job_type) VALUES
+(123456789, 35, '12345678', 'John', 'Doe', 50000.00, 'M', 'JFK', 'P'),
+(234567890, 28, '23456789', 'Emily', 'Smith', 45000.00, 'F', 'LHR', 'G'),
+(345678901, 40, '34567890', 'Michael', 'Johnson', 60000.00, 'M', 'CDG', 'B'),
+(456789012, 32, '45678901', 'Sarah', 'Brown', 55000.00, 'F', 'HND', 'S'),
+(567890123, 45, '56789012', 'Jessica', 'Davis', 65000.00, 'F', 'SYD', 'F');
+
+-- Insert statements for pilot table
+INSERT INTO pilot (experience, Pilot_rank, license_id, ssn) VALUES
+(10, 1, 1001, 123456789),
+(8, 2, 1002, 234567890),
+(12, 1, 1003, 345678901),
+(9, 2, 1004, 456789012),
+(11, 1, 1005, 567890123);
+
+-- Insert statements for flies table
+INSERT INTO flies (ssn, airplane_id) VALUES
+(123456789, 1001),
+(234567890, 1002),
+(345678901, 1003),
+(456789012, 1004),
+(567890123, 1005);
+select * from flies;
+
+-- Insert statements for gate_staff table
+INSERT INTO gate_staff (position, G_shift, gate_number, ssn) VALUES
+(1, 1, '01A', 123456789),
+(2, 2, '02B', 234567890),
+(3, 1, '03C', 345678901),
+(1, 2, '04D', 456789012),
+(2, 1, '05E', 567890123);
+
+-- Insert statements for flight_attendant table
+INSERT INTO flight_attendant (ssn, roster_id, unifrom_size) VALUES
+(123456789, 2001, 'm'),
+(234567890, 2002, 's'),
+(345678901, 2003, 's'),
+(456789012, 2004, 'm'),
+(567890123, 2005, 's');
+
+-- Insert statements for serves table
+INSERT INTO serves (passenger_id, ssn) VALUES
+(20240001, 123456789),
+(20240002, 234567890),
+(20240003, 345678901),
+(20240004, 456789012),
+(20240005, 567890123);
+
+-- Insert statements for assigned table
+INSERT INTO assigned (ssn, flight_id) VALUES
+(123456789, 1),
+(234567890, 2),
+(345678901, 3),
+(456789012, 4),
+(567890123, 5);
+
+-- Insert statements for baggage_staff table
+INSERT INTO baggage_staff (languages_spoken, ssn) VALUES
+('English, Spanish', 123456789),
+('English, French', 234567890),
+('English, Japanese', 345678901),
+('English, German', 456789012),
+('English, Chinese', 567890123);
+
+-----------------------done----------------------------
+select * from baggage;
+INSERT INTO handles (ssn, baggage_id)
+VALUES
+(123456789, 'ABC3'),
+(234567890, 'EFG6'),
+(345678901, 'IJK9'),
+(456789012, 'MNO3'),
+(567890123, 'QRS7');
+
+
+-- Insert statements for security_point table
+INSERT INTO security_point (seized_item_type, security_checkpoint_number) VALUES
+('weapons', 'A1'),
+('liquids', 'B2'),
+('drugs', 'C3'),
+('prohibited items', 'D4'),
+('cigarettes', 'E5');
+
+-- Insert statements for security_staff table
+INSERT INTO security_staff (ssn, training_certification, emergency_response_training, security_seized_item_number) VALUES
+(123456789, 'Security Training Certification', 'First Aid Training', 1),
+(234567890, 'Security Expert Certification', 'Fire Safety Training', 2),
+(345678901, 'Security Training Certification', 'Emergency Evacuation Training', 3),
+(456789012, 'Security Pro Certification', 'Crisis Management Training', 4),
+(567890123, 'Security Training Certification', 'Conflict Resolution Training', 5);
+
+-- Insert statements for supervisor table
+INSERT INTO supervisor (ssn_supervisor, ssn_supervisee) VALUES
+(123456789, 234567890),
+(234567890, 345678901),
+(345678901, 456789012),
+(456789012, 567890123),
+(567890123, 123456789);
+
+INSERT INTO passenger_lounge (capacity, lounge_location, amenities) VALUES
+(50, 'Terminal 1 Gate A1', 'WiFi, Refreshments'),
+(30, 'Terminal 2 Gate B2', 'Comfortable seating, Magazines'),
+(40, 'Terminal 3 Gate C3', 'Snacks, TV'),
+(60, 'Terminal 4 Gate D4', 'Quiet area, Charging stations'),
+(20, 'Terminal 5 Gate E5', 'Massage chairs, Newspapers');
+
+select * from checkin;
+-- Insert statements for serves2 table
+INSERT INTO serves2 (lounge_id, airline_id) VALUES
+(2, 1),
+(4, 2),
+(6, 3),
+(8, 4),
+(10, 5);
+
+-- Insert statements for checkin table
+INSERT INTO checkin (airline_id) VALUES
+( 1),
+( 2),
+( 3),
+( 4),
+( 5);
+
+-- Insert statements for location table
+INSERT INTO location (counter_id, checkin_location) VALUES
+(200, 'Terminal 1 Check-in Area'),
+(201, 'Terminal 2 Check-in Area'),
+(202, 'Terminal 3 Check-in Area'),
+(203, 'Terminal 4 Check-in Area'),
+(204, 'Terminal 5 Check-in Area');
+
+-- Insert statements for private_airplane table
+INSERT INTO private_airplane (airplane_id, id, refer_to) VALUES
+(1001, 1, 'VIP Transport'),
+(1002, 2, 'Corporate Jet'),
+(1003, 3, 'Executive Travel'),
+(1004, 4, 'Personal Aircraft'),
+(1005, 5, 'Chartered Flight');
+
+
+
+
+
+
+

@@ -1,0 +1,382 @@
+
+// Airports Collection
+db.createCollection("airports", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["airport_code", "airport_name", "location"],
+            properties: {
+                airport_code: { bsonType: "string" },
+                airport_name: { bsonType: "string" },
+                location: { bsonType: "string" },
+                city: { bsonType: "string" },
+                country: { bsonType: "string" },
+                terminals: { bsonType: ["array"], items: { bsonType: "string" } },
+                gates: { bsonType: ["array"], items: { bsonType: "string" } }
+            }
+        }
+    }
+});
+
+// Airlines Collection
+db.createCollection("airlines", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["airline_name", "fleet_size"],
+            properties: {
+                airline_name: { bsonType: "string" },
+                fleet_size: { bsonType: "int" },
+                headquarters: { bsonType: "string" },
+                airplanes: { bsonType: ["array"], items: { bsonType: "objectId" } }
+            }
+        }
+    }
+});
+
+// Airplanes Collection
+db.createCollection("airplanes", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["airplane_name", "capacity", "airline_id"],
+            properties: {
+                airplane_name: { bsonType: "string" },
+                capacity: { bsonType: "int" },
+                airline_id: { bsonType: "objectId" },
+                registration_number: { bsonType: "string" },
+                manufacturing_year: { bsonType: "int" },
+                status: { bsonType: "string" },
+                last_maintenance_date: { bsonType: "date" },
+                maintenance_history: { bsonType: ["array"], items: { bsonType: "object" } },
+                current_location: { bsonType: "string" },
+                current_flight_id: { bsonType: "objectId" },
+                next_flight_id: { bsonType: "objectId" },
+                previous_flights: { bsonType: ["array"], items: { bsonType: "object" } }
+            }
+        }
+    }
+});
+
+// Flights Collection
+db.createCollection("flights", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["flight_number", "departure_time", "arrival_time", "status", "airplane_id"],
+            properties: {
+                flight_number: { bsonType: "string" },
+                departure_time: { bsonType: "date" },
+                arrival_time: { bsonType: "date" },
+                status: { bsonType: "string" },
+                airplane_id: { bsonType: "objectId" },
+                origin: { bsonType: "string" },
+                destination: { bsonType: "string" }
+            }
+        }
+    }
+});
+
+// Passengers Collection
+db.createCollection("passengers", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name", "age", "gender", "flight_number"],
+            properties: {
+                name: { bsonType: "string" },
+                age: { bsonType: "int" },
+                gender: { bsonType: "string" },
+                flight_number: { bsonType: "string" },
+                ticket_number: { bsonType: "string" }
+            }
+        }
+    }
+});
+
+// Tickets Collection
+db.createCollection("tickets", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["ticket_number", "flight_number", "passenger_id", 
+            "booking_date", "class"],
+            properties: {
+                ticket_number: { bsonType: "string" },
+                flight_number: { bsonType: "string" },
+                passenger_id: { bsonType: "objectId" },
+                booking_date: { bsonType: "date" },
+                class: { bsonType: "string" }
+            }
+        }
+    }
+});
+
+// Employees Collection
+db.createCollection("employees", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["first_name", "last_name", "job_title", "salary", "airport_code"],
+            properties: {
+                first_name: { bsonType: "string" },
+                last_name: { bsonType: "string" },
+                job_title: { bsonType: "string" },
+                salary: { bsonType: "double" },
+                airport_code: { bsonType: "string" }
+            }
+        }
+    }
+});
+
+// Airports Collection
+db.airports.insertMany([
+    { airport_code: "LHR", airport_name: "Heathrow Airport", location: "London", 
+    city: "London", country: "UK", terminals: ["Terminal 1", "Terminal 2", "Terminal 3"],
+    gates: ["Gate A1", "Gate B2", "Gate C3"] },
+    { airport_code: "JFK", airport_name: "John F. Kennedy International Airport",
+    location: "New York", city: "New York", country: "USA", 
+    terminals: ["Terminal 4", "Terminal 5", "Terminal 6"], 
+    gates: ["Gate D4", "Gate E5", "Gate F6"] },
+    { airport_code: "DXB", airport_name: "Dubai International Airport", 
+    location: "Dubai", city: "Dubai", country: "UAE",
+    terminals: ["Terminal 1", "Terminal 2", "Terminal 3"],
+    gates: ["Gate A1", "Gate B2", "Gate C3"] },
+    { airport_code: "CDG", airport_name: "Charles de Gaulle Airport",
+    location: "Paris", city: "Paris", country: "France", 
+    terminals: ["Terminal 1", "Terminal 2", "Terminal 3"],
+    gates: ["Gate A1", "Gate B2", "Gate C3"] },
+    { airport_code: "SIN", airport_name: "Singapore Changi Airport", 
+    location: "Singapore", city: "Singapore", country: "Singapore",
+    terminals: ["Terminal 1", "Terminal 2", "Terminal 3"], 
+    gates: ["Gate A1", "Gate B2", "Gate C3"] }
+]);
+
+// Airlines Collection
+db.airlines.insertMany([
+    { airline_name: "British Airways", fleet_size: 100, 
+    headquarters: "London", airplanes: [] },
+    { airline_name: "Delta Air Lines", fleet_size: 150, 
+    headquarters: "Atlanta", airplanes: [] },
+    { airline_name: "Emirates", fleet_size: 200,
+    headquarters: "Dubai", airplanes: [] },
+    { airline_name: "Air France", fleet_size: 120,
+    headquarters: "Paris", airplanes: [] },
+    { airline_name: "Singapore Airlines", fleet_size: 130,
+    headquarters: "Singapore", airplanes: [] }
+]);
+
+// Airplanes Collection
+db.airplanes.insertMany([
+    { airplane_name: "Boeing 737", capacity: 150,
+    airline_id: ObjectId("60d5a00d4f33a25415bbeda4"),
+    registration_number: "N12345", manufacturing_year: 2015, 
+    status: "Active", last_maintenance_date: ISODate("2022-01-01"),
+    maintenance_history: [], current_location: "LHR",
+    current_flight_id: null, next_flight_id: null, previous_flights: [] },
+    { airplane_name: "Airbus A320", capacity: 180,
+    airline_id: ObjectId("60d5a00d4f33a25415bbeda5"),
+    registration_number: "N67890", manufacturing_year: 2018,
+    status: "Active", last_maintenance_date: ISODate("2022-02-15"),
+    maintenance_history: [], current_location: "JFK",
+    current_flight_id: null, next_flight_id: null, previous_flights: [] },
+    { airplane_name: "Boeing 777", capacity: 300, 
+    airline_id: ObjectId("60d5a00d4f33a25415bbeda6"),
+    registration_number: "N54321", manufacturing_year: 2016, 
+    status: "Active", last_maintenance_date: ISODate("2022-03-20"),
+    maintenance_history: [], current_location: "DXB",
+    current_flight_id: null, next_flight_id: null, previous_flights: [] },
+    { airplane_name: "Airbus A350", capacity: 250,
+    airline_id: ObjectId("60d5a00d4f33a25415bbeda7"),
+    registration_number: "N98765", manufacturing_year: 2019, 
+    status: "Active", last_maintenance_date: ISODate("2022-04-10"),
+    maintenance_history: [], current_location: "CDG",
+    current_flight_id: null, next_flight_id: null, previous_flights: [] },
+    { airplane_name: "Boeing 787", capacity: 200,
+    airline_id: ObjectId("60d5a00d4f33a25415bbeda8"), 
+    registration_number: "N24680", manufacturing_year: 2017, 
+    status: "Active", last_maintenance_date: ISODate("2022-05-05"),
+    maintenance_history: [], current_location: "SIN", current_flight_id: null, 
+    next_flight_id: null, previous_flights: [] }
+]);
+
+// Flights Collection
+db.flights.insertMany([
+    { flight_number: "BA101", departure_time: ISODate("2022-06-01T08:00:00Z"),
+    arrival_time: ISODate("2022-06-01T11:30:00Z"), status: "Scheduled", 
+    airplane_id: ObjectId("60d5a0164f33a25415bbeda6"), origin: "LHR", destination: "JFK" },
+    { flight_number: "DL201", departure_time: ISODate("2022-06-02T09:30:00Z"),
+    arrival_time: ISODate("2022-06-02T12:45:00Z"), status: "Scheduled", 
+    airplane_id: ObjectId("60d5a0164f33a25415bbeda7"), origin: "JFK", destination: "LHR" },
+    { flight_number: "EK301", departure_time: ISODate("2022-06-03T10:00:00Z"), 
+    arrival_time: ISODate("2022-06-03T15:00:00Z"), status: "Scheduled", 
+    airplane_id: ObjectId("60d5a0164f33a25415bbeda8"), origin: "DXB", destination: "CDG" },
+    { flight_number: "AF401", departure_time: ISODate("2022-06-04T11:45:00Z"), 
+    arrival_time: ISODate("2022-06-04T17:30:00Z"), status: "Scheduled",
+    airplane_id: ObjectId("60d5a0164f33a25415bbeda9"), origin: "CDG", destination: "SIN" },
+    { flight_number: "SQ501", departure_time: ISODate("2022-06-05T13:20:00Z"), 
+    arrival_time: ISODate("2022-06-05T18:45:00Z"), status: "Scheduled", 
+    airplane_id: ObjectId("60d5a0164f33a25415bbeda10"), origin: "SIN", destination: "LHR" }
+]);
+
+// Passengers Collection
+db.passengers.insertMany([
+    { name: "John Doe", age: 35, gender: "Male", flight_number: "BA101", ticket_number: "T12345" },
+    { name: "Jane Smith", age: 28, gender: "Female", flight_number: "BA101", ticket_number: "T12346" },
+    { name: "Michael Johnson", age: 45, gender: "Male", flight_number: "DL201", ticket_number: "T12347" },
+    { name: "Emily Brown", age: 30, gender: "Female", flight_number: "EK301", ticket_number: "T12348" },
+    { name: "Daniel Wilson", age: 40, gender: "Male", flight_number: "AF401", ticket_number: "T12349" }
+]);
+
+// Tickets Collection
+db.tickets.insertMany([
+    { ticket_number: "T12345", flight_number: "BA101", 
+    passenger_id: ObjectId("60d5a0214f33a25415bbeda8"), 
+    booking_date: ISODate("2022-05-15"), class: "Economy" },
+    { ticket_number: "T12346", flight_number: "BA101", 
+    passenger_id: ObjectId("60d5a0214f33a25415bbeda9"),
+    booking_date: ISODate("2022-05-16"), class: "Business" },
+    { ticket_number: "T12347", flight_number: "DL201", 
+    passenger_id: ObjectId("60d5a0214f33a25415bbeda10"), 
+    booking_date: ISODate("2022-05-17"), class: "Economy" },
+    { ticket_number: "T12348", flight_number: "EK301",
+    passenger_id: ObjectId("60d5a0214f33a25415bbeda11"),
+    booking_date: ISODate("2022-05-18"), class: "First Class" },
+    { ticket_number: "T12349", flight_number: "AF401",
+    passenger_id: ObjectId("60d5a0214f33a25415bbeda12"),
+    booking_date: ISODate("2022-05-19"), class: "Business" }
+]);
+
+// Employees Collection
+db.employees.insertMany([
+    { first_name: "David", last_name: "Smith", job_title: "Pilot",
+    salary: 90000, airport_code: "LHR" },
+    { first_name: "Emily", last_name: "Johnson", job_title: "Flight Attendant",
+    salary: 50000, airport_code: "JFK" },
+    { first_name: "James", last_name: "Williams", job_title: "Mechanic", 
+    salary: 60000, airport_code: "DXB" },
+    { first_name: "Emma", last_name: "Jones", job_title: "Customer Service Representative", 
+    salary: 45000, airport_code: "CDG" },
+    { first_name: "Michael", last_name: "Brown", job_title: "Security Officer",
+    salary: 55000, airport_code: "SIN" }
+]);
+
+// 1 Retrieve all airports in the city of London
+db.airports.find({ city: "London" });
+
+// 2 Retrieve all flights departing from JFK International Airport (JFK)
+db.flights.find({ origin: "JFK" });
+
+// 3 Retrieve all passengers booked on flight BA101
+db.passengers.find({ flight_number: "BA101" });
+
+// 4 Retrieve all tickets booked by a specific passenger (by ObjectId)
+db.tickets.find({ passenger_id: ObjectId("60d5a0214f33a25415bbeda8") });
+
+// 5 Retrieve all airlines headquartered in Singapore
+db.airlines.find({ headquarters: "Singapore" });
+
+// 6 Retrieve all flights departing between two specific dates (inclusive)
+db.flights.find({ departure_time: { $gte: ISODate("2022-06-01"), $lt: ISODate("2022-06-02") } });
+
+// 7 Retrieve all passengers above the age of 30
+db.passengers.find({ age: { $gt: 30 } });
+
+// 8 Retrieve all flights operated by a specific airline (by ObjectId)
+db.flights.find({ airline_id: ObjectId("60d5a00d4f33a25415bbeda5") });
+
+
+// 9 Retrieve all employees with the job title "Mechanic" working at the airport with code "DXB"
+db.employees.find({ job_title: "Mechanic", airport_code: "DXB" });
+
+// 10 Retrieve all tickets booked for the "Business" class
+db.tickets.find({ class: "Business" });
+
+// 11 Retrieve all flights departing from London Heathrow Airport (LHR)
+db.flights.find({ origin: "LHR" });
+
+// 12 Retrieve all flights with the destination airport code "SIN" (Singapore)
+db.flights.find({ destination: "SIN" });
+
+// 13 Retrieve all passengers with the ticket number "T12345"
+db.passengers.find({ ticket_number: "T12345" });
+
+// 14 Retrieve all airplanes with a capacity greater than 200
+db.airplanes.find({ capacity: { $gt: 200 } });
+
+// 15 Retrieve all flights with the status "Scheduled"
+db.flights.find({ status: "Scheduled" });
+
+// 16 Retrieve all flights operated by airlines with a fleet size greater than 150
+db.flights.aggregate([
+  { $lookup: {
+      from: "airlines",
+      localField: "airline_id",
+      foreignField: "_id",
+      as: "airline"
+  }},
+  { $match: { "airline.fleet_size": { $gt: 150 } }}
+]);
+
+// 17 Retrieve all passengers booked in the "Economy" class
+db.passengers.find({ class: "Economy" });
+
+// 18 Retrieve all employees with a salary greater than $60,000
+db.employees.find({ salary: { $gt: 60000 } });
+
+// 19 Retrieve all airplanes manufactured after the year 2017
+db.airplanes.find({ manufacturing_year: { $gt: 2017 } });
+
+// 20 Retrieve all flights departing from London Heathrow Airport (LHR) and arriving at John F. Kennedy International Airport (JFK)
+db.flights.find({ origin: "LHR", destination: "JFK" });
+
+// 21 Calculate the average age of passengers on each flight
+db.passengers.aggregate([
+  {
+    $group: {
+      _id: "$flight_number",
+      avg_age: { $avg: "$age" }
+    }
+  }
+]);
+
+// 22 Find the total number of passengers booked in each class for each flight
+db.tickets.aggregate([
+  {
+    $group: {
+      _id: { flight: "$flight_number", class: "$class" },
+      total_passengers: { $sum: 1 }
+    }
+  },
+  {
+    $project: {
+      flight_number: "$_id.flight",
+      class: "$_id.class",
+      total_passengers: 1,
+      _id: 0
+    }
+  }
+]);
+
+// 23 Find the busiest airports based on the total number of flights departing from each airport
+db.flights.aggregate([
+  {
+    $group: {
+      _id: "$origin",
+      total_flights: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { total_flights: -1 }
+  },
+  {
+    $limit: 5
+  }
+]);
+
+
+
+
+
+
+

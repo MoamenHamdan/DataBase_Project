@@ -1,0 +1,488 @@
+
+
+
+
+
+
+
+
+//1
+[
+  {
+    "airport_code": "LHR",
+    "airport_name": "Heathrow Airport",
+    "location": "London",
+    "city": "London",
+    "country": "UK",
+    "terminals": ["Terminal 1", "Terminal 2", "Terminal 3"],
+    "gates": ["Gate A1", "Gate B2", "Gate C3"]
+  }
+]
+//2
+
+[
+    {
+        "_id": ObjectId("60d5a0314f33a25415bbedb0"),
+        "flight_number": "DL201",
+        "departure_time": ISODate("2022-06-02T09:30:00Z"),
+        "arrival_time": ISODate("2022-06-02T12:45:00Z"),
+        "status": "Scheduled",
+        "airplane_id": ObjectId("60d5a0164f33a25415bbeda7"),
+        "origin": "JFK",
+        "destination": "LHR"
+    }
+]
+
+
+//3 
+[
+  {
+    "name": "John Doe",
+    "age": 35,
+    "gender": "Male",
+    "flight_number": "BA101",
+    "ticket_number": "T12345"
+  },
+  {
+    "name": "Jane Smith",
+    "age": 28,
+    "gender": "Female",
+    "flight_number": "BA101",
+    "ticket_number": "T12346"
+  }
+]
+
+
+//4 
+[
+  {
+    "ticket_number": "T12345",
+    "flight_number": "BA101",
+    "passenger_id": "60d5a0214f33a25415bbeda8",
+    "booking_date": "2022-05-15T00:00:00Z",
+    "class": "Economy"
+  }
+]
+
+
+//5 
+[
+  {
+    "airline_name": "Singapore Airlines",
+    "fleet_size": 130,
+    "headquarters": "Singapore",
+    "airplanes": []
+  }
+]
+
+
+
+//6 
+[
+  {
+    "flight_number": "BA101",
+    "departure_time": "2022-06-01T08:00:00Z",
+    "arrival_time": "2022-06-01T11:30:00Z",
+    "status": "Scheduled",
+    "airplane_id": "60d5a0164f33a25415bbeda6",
+    "origin": "LHR",
+    "destination": "JFK"
+  }
+]
+
+
+
+
+//7 
+[
+  {
+    "name": "John Doe",
+    "age": 35,
+    "gender": "Male",
+    "flight_number": "BA101",
+    "ticket_number": "T12345"
+  },
+  {
+    "name": "Michael Johnson",
+    "age": 45,
+    "gender": "Male",
+    "flight_number": "DL201",
+    "ticket_number": "T12347"
+  },
+  {
+    "name": "Daniel Wilson",
+    "age": 40,
+    "gender": "Male",
+    "flight_number": "AF401",
+    "ticket_number": "T12349"
+  }
+]
+
+
+
+//8 
+[
+  { 
+   "_id": ObjectId("60d5a16a4f33a25415bbedb4"), 
+   "flight_number": "EK301", 
+   "departure_time": ISODate("2022-06-03T10:00:00Z"), 
+    "arrival_time": ISODate("2022-06-03T15:00:00Z"), 
+    "status": "Scheduled", 
+    "airplane_id": ObjectId("60d5a0164f33a25415bbeda8"), 
+    "origin": "DXB", 
+    "destination": "CDG" 
+  }
+]
+
+
+//9 
+[
+  {
+    "first_name": "James",
+    "last_name": "Williams",
+    "job_title": "Mechanic",
+    "salary": 60000,
+    "airport_code": "DXB"
+  }
+]
+
+
+
+//10 
+[
+  {
+    "ticket_number": "T12346",
+    "flight_number": "BA101",
+    "passenger_id": "60d5a0214f33a25415bbeda9",
+    "booking_date": "2022-05-16T00:00:00Z",
+    "class": "Business"
+  },
+  {
+    "ticket_number": "T12349",
+    "flight_number": "AF401",
+    "passenger_id": "60d5a0214f33a25415bbeda12",
+    "booking_date": "2022-05-19T00:00:00Z",
+    "class": "Business"
+  }
+]
+
+//11 
+[
+  {
+    "flight_number": "BA101",
+    "departure_time": "2022-06-01T08:00:00Z",
+    "arrival_time": "2022-06-01T11:30:00Z",
+    "status": "Scheduled",
+    "airplane_id": "60d5a0164f33a25415bbeda6",
+    "origin": "LHR",
+    "destination": "JFK"
+  }
+]
+
+
+
+//12 
+
+[]
+
+
+
+//13
+[
+    {
+        "name": "John Doe",
+        "age": 35,
+        "gender": "Male",
+        "flight_number": "BA101",
+        "ticket_number": "T12345"
+    }
+]
+
+
+
+
+
+//14 
+[
+    {
+        "airplane_name": "Boeing 777",
+        "capacity": 300,
+        "airline_id": "60d5a00d4f33a25415bbeda6",
+        "registration_number": "N54321",
+        "manufacturing_year": 2016,
+        "status": "Active",
+        "last_maintenance_date": "2022-03-20T00:00:00Z",
+        "maintenance_history": [],
+        "current_location": "DXB",
+        "current_flight_id": null,
+        "next_flight_id": null,
+        "previous_flights": []
+    },
+    {
+        "airplane_name": "Airbus A350",
+        "capacity": 250,
+        "airline_id": "60d5a00d4f33a25415bbeda7",
+        "registration_number": "N98765",
+        "manufacturing_year": 2019,
+        "status": "Active",
+        "last_maintenance_date": "2022-04-10T00:00:00Z",
+        "maintenance_history": [],
+        "current_location": "CDG",
+        "current_flight_id": null,
+        "next_flight_id": null,
+        "previous_flights": []
+    },
+    {
+        "airplane_name": "Boeing 787",
+        "capacity": 200,
+        "airline_id": "60d5a00d4f33a25415bbeda8",
+        "registration_number": "N24680",
+        "manufacturing_year": 2017,
+        "status": "Active",
+        "last_maintenance_date": "2022-05-05T00:00:00Z",
+        "maintenance_history": [],
+        "current_location": "SIN",
+        "current_flight_id": null,
+        "next_flight_id": null,
+        "previous_flights": []
+    }
+]
+
+
+
+
+//15 
+[
+    {
+        "flight_number": "BA101",
+        "departure_time": "2022-06-01T08:00:00Z",
+        "arrival_time": "2022-06-01T11:30:00Z",
+        "status": "Scheduled",
+        "airplane_id": "60d5a0164f33a25415bbeda6",
+        "origin": "LHR",
+        "destination": "JFK"
+    },
+    {
+        "flight_number": "DL201",
+        "departure_time": "2022-06-02T09:30:00Z",
+        "arrival_time": "2022-06-02T12:45:00Z",
+        "status": "Scheduled",
+        "airplane_id": "60d5a0164f33a25415bbeda7",
+        "origin": "JFK",
+        "destination": "LHR"
+    },
+    {
+        "flight_number": "EK301",
+        "departure_time": "2022-06-03T10:00:00Z",
+        "arrival_time": "2022-06-03T15:00:00Z",
+        "status": "Scheduled",
+        "airplane_id": "60d5a0164f33a25415bbeda8",
+        "origin": "DXB",
+        "destination": "CDG"
+    },
+    {
+        "flight_number": "AF401",
+        "departure_time": "2022-06-04T11:45:00Z",
+        "arrival_time": "2022-06-04T17:30:00Z",
+        "status": "Scheduled",
+        "airplane_id": "60d5a0164f33a25415bbeda9",
+        "origin": "CDG",
+        "destination": "SIN"
+    },
+    {
+        "flight_number": "SQ501",
+        "departure_time": "2022-06-05T13:20:00Z",
+        "arrival_time": "2022-06-05T18:45:00Z",
+        "status": "Scheduled",
+        "airplane_id": "60d5a0164f33a25415bbeda10",
+        "origin": "SIN",
+        "destination": "LHR"
+    }
+]
+
+
+
+
+
+//16 
+ [
+    {
+        "_id": "60d5a00d4f33a25415bbeda6",
+        "total_flights": 1
+    },
+    {
+        "_id": "60d5a00d4f33a25415bbeda7",
+        "total_flights": 1
+    },
+    {
+        "_id": "60d5a00d4f33a25415bbeda8",
+        "total_flights": 1
+    }
+]
+
+
+
+
+//17 
+[
+    {
+        "name": "John Doe",
+        "age": 35,
+        "gender": "Male",
+        "flight_number": "BA101",
+        "ticket_number": "T12345"
+    },
+    {
+        "name": "Michael Johnson",
+        "age": 45,
+        "gender": "Male",
+        "flight_number": "DL201",
+        "ticket_number": "T12347"
+    }
+]
+
+
+
+//18   
+[
+    {
+        "first_name": "David",
+        "last_name": "Smith",
+        "job_title": "Pilot",
+        "salary": 90000,
+        "airport_code": "LHR"
+    }
+]
+
+
+//19 
+[
+    {
+        "airplane_name": "Airbus A320",
+        "capacity": 180,
+        "airline_id": "60d5a00d4f33a25415bbeda5",
+        "registration_number": "N67890",
+        "manufacturing_year": 2018,
+        "status": "Active",
+        "last_maintenance_date": "2022-02-15T00:00:00Z",
+        "maintenance_history": [],
+        "current_location": "JFK",
+        "current_flight_id": null,
+        "next_flight_id": null,
+        "previous_flights": []
+    },
+    {
+        "airplane_name": "Airbus A350",
+        "capacity": 250,
+        "airline_id": "60d5a00d4f33a25415bbeda7",
+        "registration_number": "N98765",
+        "manufacturing_year": 2019,
+        "status": "Active",
+        "last_maintenance_date": "2022-04-10T00:00:00Z",
+        "maintenance_history": [],
+        "current_location": "CDG",
+        "current_flight_id": null,
+        "next_flight_id": null,
+        "previous_flights": []
+    }
+]
+
+
+
+//20 
+
+[
+    {
+        "flight_number": "BA101",
+        "departure_time": "2022-06-01T08:00:00Z",
+        "arrival_time": "2022-06-01T11:30:00Z",
+        "status": "Scheduled",
+        "airplane_id": "60d5a0164f33a25415bbeda6",
+        "origin": "LHR",
+        "destination": "JFK"
+    }
+]
+  //21 
+  [
+    {
+        "_id": "EK301",
+        "avg_age": 30
+    },
+    {
+        "_id": "DL201",
+        "avg_age": 45
+    },
+    {
+        "_id": "BA101",
+        "avg_age": 31.5
+    },
+    {
+        "_id": "AF401",
+        "avg_age": 40
+    }
+]
+
+  
+  
+  //22 
+  [
+    {
+        "flight_number": "BA101",
+        "class": "Economy",
+        "total_passengers": 1
+    },
+    {
+        "flight_number": "BA101",
+        "class": "Business",
+        "total_passengers": 1
+    },
+    {
+        "flight_number": "DL201",
+        "class": "Economy",
+        "total_passengers": 1
+    },
+    {
+        "flight_number": "EK301",
+        "class": "First Class",
+        "total_passengers": 1
+    },
+    {
+        "flight_number": "AF401",
+        "class": "Business",
+        "total_passengers": 1
+    }
+]
+
+  
+  
+  //23 
+  [
+    {
+        "_id": "SIN",
+        "total_flights": 1
+    },
+    {
+        "_id": "CDG",
+        "total_flights": 1
+    },
+    {
+        "_id": "DXB",
+        "total_flights": 1
+    },
+    {
+        "_id": "JFK",
+        "total_flights": 1
+    },
+    {
+        "_id": "LHR",
+        "total_flights": 1
+    }
+]
+
+
+
+
+
+
+
+
